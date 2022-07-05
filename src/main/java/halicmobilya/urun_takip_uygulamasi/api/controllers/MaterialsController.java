@@ -58,4 +58,9 @@ public class MaterialsController {
         return ResponseEntity.ok(this.materialService.getAllByModelIdAndTypeIdAndColorId(modelId, typeId, colorId));
     }
 
+    @GetMapping(value = "/v1/materials/getByReferenceNumber")
+    public ResponseEntity<?> getByReferenceNumber(@RequestParam("referenceNumber") Long referenceNumber){
+        return ResponseEntity.ok(this.materialService.getByReferenceNumber(referenceNumber));
+    }
+
 }

@@ -10,4 +10,5 @@ public interface MaterialDao extends JpaRepository<Material, Integer> {
     List<Material> getByType_TypeId(int id);
     List<Material> getByModel_ModelId(int id);
     List<Material> getByModel_ModelIdAndType_TypeIdAndColor_ColorId(int modelId, int typeId, int colorId);
+    Material getByReferenceNumber(Long referenceNumber);
 }

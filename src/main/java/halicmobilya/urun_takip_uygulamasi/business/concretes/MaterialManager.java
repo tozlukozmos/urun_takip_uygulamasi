@@ -21,22 +21,13 @@ public class MaterialManager implements MaterialService {
     }
 
     @Override
-    public Result addMaterial(Material material) {
-        try {
-            this.materialDao.save(material);
-            return new SuccessResult("Materyal başarıyla eklendi.");
-        } catch (Exception e){
-            return new ErrorResult("Materyal eklenirken hata oluştu.");
-        }
+    public DataResult<Material> addMaterial(Material material) {
+        return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
     }
 
     @Override
     public DataResult<Material> updateMaterial(Material material) {
-        try {
-            return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla güncellendi.");
-        } catch (Exception e){
-            return new ErrorDataResult("Materyal güncellenirken hata oluştu.");
-        }
+        return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla güncellendi.");
     }
 
     @Override
@@ -71,6 +62,11 @@ public class MaterialManager implements MaterialService {
     @Override
     public DataResult<List<Material>> getAllByModelIdAndTypeIdAndColorId(int modelId, int typeId, int colorId) {
         return new SuccessDataResult<List<Material>>(this.materialDao.getByModel_ModelIdAndType_TypeIdAndColor_ColorId(modelId, typeId, colorId), "Aynı materyaller listelendi.");
+    }
+
+    @Override
+    public DataResult<Material> getByReferenceNumber(Long referenceNumber) {
+        return new SuccessDataResult<Material>(this.materialDao.getByReferenceNumber(referenceNumber), "Materyal başarıyla getirildi.");
     }
 
 }

@@ -5,6 +5,7 @@ import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -70,6 +71,7 @@ public class User {
     // @NotBlank(message = "Department is required")
     private boolean isAdmin;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
     private Date createdAt;
 }

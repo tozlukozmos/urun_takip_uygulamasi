@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.repository.Temporal;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.List;
 
@@ -38,10 +41,9 @@ public class Material {
     @JoinColumn(name = "type_id")
     private Type type;
 
-    @Column(name = "unit_of_amount")
-    @NotNull(message = "Miktar birimi alanı gereklidir.")
-    @NotBlank(message = "Miktar birimi alanı gereklidir.")
-    private String unitOfAmount;
+    @ManyToOne()
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
     @Column(name = "amount")
     @NotNull(message = "Miktar alanı gereklidir.")
@@ -56,11 +58,9 @@ public class Material {
     @JoinColumn(name = "color_id")
     private Color color;
 
-    @Column(name = "size")
-    private String size;
-
-    // @Column(name = "quantity_in_stock")
-    // private int quantityInStock;
+    @ManyToOne()
+    @JoinColumn(name = "size_id")
+    private Size size;
 
     @Column(name = "description")
     private String description;
@@ -68,7 +68,8 @@ public class Material {
     @OneToMany(mappedBy = "material")
     private List<Process> processes;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
     private Date createdAt;
 
 }

@@ -41,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/v1/auth/signUp")
-    public ResponseEntity<?> signUp(@Valid @RequestBody User user){
+    public ResponseEntity<?> signUp(@RequestBody User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return ResponseEntity.ok(this.userService.signUp(user));
     }
