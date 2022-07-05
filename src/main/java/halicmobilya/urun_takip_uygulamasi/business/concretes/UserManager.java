@@ -31,7 +31,7 @@ public class UserManager implements UserService {
     @Override
     public Result addUser(User user) {
         this.userDao.save(user);
-        return new SuccessResult("Kullanıcı başarıyla eklendi.");
+        return new SuccessResult("Personel başarıyla eklendi.");
     }
 
     @Override

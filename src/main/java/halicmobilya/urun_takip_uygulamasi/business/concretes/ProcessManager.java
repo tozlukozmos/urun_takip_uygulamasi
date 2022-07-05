@@ -9,6 +9,7 @@ import halicmobilya.urun_takip_uygulamasi.dataAccess.abstracts.ProcessDao;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public class ProcessManager implements ProcessService {
 
     @Override
     public DataResult<List<Process>> getAllProcess() {
-        return new SuccessDataResult<List<Process>>(this.processDao.findAll(), "Tüm işlemler listelendi.");
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
+        return new SuccessDataResult<List<Process>>(this.processDao.findAll(sort), "Tüm işlemler listelendi.");
     }
 
 }
