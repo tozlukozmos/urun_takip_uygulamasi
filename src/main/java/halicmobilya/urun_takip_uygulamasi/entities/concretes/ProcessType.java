@@ -23,8 +23,8 @@ public class ProcessType {
     private int processTypeId;
 
     @Column(name = "process_type_name")
-    @NotNull(message = "İsim alanı gereklidir.")
-    @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "İşlem türü isim alanı gereklidir.")
+    @NotBlank(message = "İşlem türü isim alanı gereklidir.")
     private String processTypeName;
 
     @OneToMany(mappedBy = "processType")

@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.repository.Temporal;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -33,39 +33,43 @@ public class Material {
     private String image;
 
     @Column(name = "material_name")
-    @NotNull(message = "İsim alanı gereklidir.")
-    @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Materyal isim alanı gereklidir.")
+    @NotBlank(message = "Materyal isim alanı gereklidir.")
     private String name;
 
     @ManyToOne()
     @JoinColumn(name = "type_id")
+    @Valid
     private Type type;
 
     @ManyToOne()
     @JoinColumn(name = "unit_id")
+    @Valid
     private Unit unit;
 
     @Column(name = "amount")
     @NotNull(message = "Miktar alanı gereklidir.")
-    @NotBlank(message = "Miktar alanı gereklidir.")
     private int amount;
 
     @ManyToOne()
     @JoinColumn(name = "model_id")
+    @Valid
     private Model model;
 
     @ManyToOne()
     @JoinColumn(name = "color_id")
+    @Valid
     private Color color;
 
     @ManyToOne()
     @JoinColumn(name = "size_id")
+    @Valid
     private Size size;
 
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<Process> processes;
 
     @Column(name = "created_at", nullable = false, updatable = false)

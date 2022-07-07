@@ -23,8 +23,8 @@ public class Color {
     private int colorId;
 
     @Column(name = "color_name")
-    @NotNull(message = "İsim alanı gereklidir.")
-    @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Renk isim alanı gereklidir.")
+    @NotBlank(message = "Renk isim alanı gereklidir.")
     private String colorName;
 
     @OneToMany(mappedBy = "color")

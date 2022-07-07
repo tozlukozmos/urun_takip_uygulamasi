@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -19,7 +21,7 @@ public class ColorsController {
     }
 
     @PostMapping(value = "/v1/colors/addColor")
-    public ResponseEntity<?> addColor(@RequestBody Color color){
+    public ResponseEntity<?> addColor(@Valid @RequestBody Color color){
         return ResponseEntity.ok(this.colorService.addColor(color));
     }
 

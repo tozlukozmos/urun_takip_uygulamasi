@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -21,8 +23,8 @@ public class Size {
     private int sizeId;
 
     @Column(name = "size_name")
-    // @NotNull(message = "İsim alanı gereklidir.")
-    // @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Boyut isim alanı gereklidir.")
+    @NotBlank(message = "Boyut isim alanı gereklidir.")
     private String sizeName;
 
     @OneToMany(mappedBy = "size")

@@ -1,10 +1,14 @@
 package halicmobilya.urun_takip_uygulamasi.api.controllers;
 
 import halicmobilya.urun_takip_uygulamasi.business.abstracts.MaterialService;
+import halicmobilya.urun_takip_uygulamasi.core.utilities.results.ErrorResult;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -19,12 +23,16 @@ public class MaterialsController {
     }
 
     @PostMapping(value = "/v1/materials/addMaterial")
-    public ResponseEntity<?> addMaterial(@RequestBody Material material){
-        return ResponseEntity.ok(this.materialService.addMaterial(material));
+    public ResponseEntity<?> addMaterial(@Valid @RequestBody Material material){
+        if(this.materialService.getByReferenceNumber(material.getReferenceNumber()).getData() == null){
+            return ResponseEntity.ok(this.materialService.addMaterial(material));
+        } else {
+            return ResponseEntity.status(400).body(new ErrorResult("QR kod başka bir materyale tanımlanmıştır."));
+        }
     }
 
     @PutMapping(value = "/v1/materials/updateMaterial")
-    public ResponseEntity<?> updateMaterial(@RequestBody Material material){
+    public ResponseEntity<?> updateMaterial(@Valid @RequestBody Material material){
         return ResponseEntity.ok(this.materialService.updateMaterial(material));
     }
 

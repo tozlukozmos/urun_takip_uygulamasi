@@ -13,4 +13,5 @@ public interface UserService {
     DataResult<User> updateUser(User user);
     Result deleteUser(int id);
     DataResult<List<User>> getAllUser();
+    DataResult<User> getByEmail(String email);
 }

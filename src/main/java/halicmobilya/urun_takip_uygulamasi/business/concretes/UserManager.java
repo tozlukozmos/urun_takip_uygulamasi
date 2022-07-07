@@ -54,4 +54,9 @@ public class UserManager implements UserService {
     public DataResult<List<User>> getAllUser() {
         return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Tüm kullanıcılar listelendi.");
     }
+
+    @Override
+    public DataResult<User> getByEmail(String email) {
+        return new SuccessDataResult<User>(this.userDao.getByEmail(email), "Kullanıcı başarıyla bulundu.");
+    }
 }

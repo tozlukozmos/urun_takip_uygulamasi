@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -24,19 +25,21 @@ public class Process {
 
     @ManyToOne()
     @JoinColumn(name = "user_id")
+    @Valid
     private User user;
 
     @ManyToOne()
     @JoinColumn(name = "material_id")
+    @Valid
     private Material material;
 
     @Column(name = "amount")
     @NotNull(message = "Miktar alanı gereklidir.")
-    @NotBlank(message = "Miktar alanı gereklidir.")
     private int amount;
 
     @ManyToOne()
     @JoinColumn(name = "process_type_id")
+    @Valid
     private ProcessType processType;
 
     @Column(name = "created_at", nullable = false, updatable = false)
