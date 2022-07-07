@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -20,7 +22,7 @@ public class ProcessesController {
     }
 
     @PostMapping(value = "/v1/processes/addProcess")
-    public ResponseEntity<?> addProcess(@RequestBody Process process){
+    public ResponseEntity<?> addProcess(@Valid @RequestBody Process process){
         return ResponseEntity.ok(this.processService.addProcess(process));
     }
 

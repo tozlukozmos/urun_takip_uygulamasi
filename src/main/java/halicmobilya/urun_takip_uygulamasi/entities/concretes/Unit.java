@@ -23,8 +23,8 @@ public class Unit {
     private int unitId;
 
     @Column(name = "unit_name")
-    // @NotNull(message = "İsim alanı gereklidir.")
-    // @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Miktar birimi isim alanı gereklidir.")
+    @NotBlank(message = "Miktar birimi isim alanı gereklidir.")
     private String unitName;
 
     @OneToMany(mappedBy = "unit")

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -19,7 +21,7 @@ public class DepartmentsController {
     }
 
     @PostMapping(value = "/v1/departments/addDepartment")
-    public ResponseEntity<?> addDepartment(@RequestBody Department department){
+    public ResponseEntity<?> addDepartment(@Valid @RequestBody Department department){
         return ResponseEntity.ok(this.departmentService.addDepartment(department));
     }
 

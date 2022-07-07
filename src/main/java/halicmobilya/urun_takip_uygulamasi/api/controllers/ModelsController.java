@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -19,7 +21,7 @@ public class ModelsController {
     }
 
     @PostMapping(value = "/v1/models/addModel")
-    public ResponseEntity<?> addModel(@RequestBody Model model){
+    public ResponseEntity<?> addModel(@Valid @RequestBody Model model){
         return ResponseEntity.ok(this.modelService.addModel(model));
     }
 

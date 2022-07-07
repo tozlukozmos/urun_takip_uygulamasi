@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -50,14 +51,13 @@ public class User {
     private String password;
 
     @Column(name = "phone_number")
-    // @NotNull(message = "Phone Number is required")
-    // @NotBlank(message = "Phone Number is required")
+    @NotNull(message = "Telefon numarası alanı gereklidir.")
+    @NotBlank(message = "Telefon numarası alanı gereklidir.")
     private String phoneNumber;
 
     @ManyToOne()
     @JoinColumn(name = "department_id")
-    @NotNull(message = "Birim alanı gereklidir.")
-    @NotBlank(message = "Birim alanı gereklidir.")
+    @Valid
     private Department department;
 
     @OneToMany(mappedBy = "user")
@@ -67,8 +67,7 @@ public class User {
     private String image;
 
     @Column(name = "is_admin")
-    // @NotNull(message = "Department is required")
-    // @NotBlank(message = "Department is required")
+    @NotNull(message = "Admin yetki bilgisi alanı gereklidir.")
     private boolean isAdmin;
 
     @Column(name = "created_at", nullable = false, updatable = false)

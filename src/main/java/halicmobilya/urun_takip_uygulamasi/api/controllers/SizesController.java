@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -19,7 +21,7 @@ public class SizesController {
     }
 
     @PostMapping(value = "/v1/sizes/addSize")
-    public ResponseEntity<?> addSize(@RequestBody Size size){
+    public ResponseEntity<?> addSize(@Valid @RequestBody Size size){
         return ResponseEntity.ok(this.sizeService.addSize(size));
     }
 

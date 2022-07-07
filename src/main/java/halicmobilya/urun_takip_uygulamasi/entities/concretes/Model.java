@@ -23,8 +23,8 @@ public class Model {
     private int modelId;
 
     @Column(name = "model_name")
-    @NotNull(message = "İsim alanı gereklidir.")
-    @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Model isim alanı gereklidir.")
+    @NotBlank(message = "Model isim alanı gereklidir.")
     private String modelName;
 
     @OneToMany(mappedBy = "model")

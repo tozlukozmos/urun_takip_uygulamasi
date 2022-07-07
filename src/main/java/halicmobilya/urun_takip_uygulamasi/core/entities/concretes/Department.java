@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,8 @@ public class Department {
     private int departmentId;
 
     @Column(name = "department_name")
+    @NotNull(message = "Çalışma birimi isim alanı gereklidir.")
+    @NotBlank(message = "Çalışma birimi isim alanı gereklidir.")
     private String departmentName;
 
     @OneToMany(mappedBy = "department")

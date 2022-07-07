@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -18,7 +20,7 @@ public class UnitsColor {
     }
 
     @PostMapping(value = "/v1/units/addUnit")
-    public ResponseEntity<?> addUnit(@RequestBody Unit unit){
+    public ResponseEntity<?> addUnit(@Valid @RequestBody Unit unit){
         return ResponseEntity.ok(this.unitService.addUnit(unit));
     }
 

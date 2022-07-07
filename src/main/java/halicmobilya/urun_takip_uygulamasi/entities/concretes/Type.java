@@ -23,8 +23,8 @@ public class Type {
     private int typeId;
 
     @Column(name = "type_name")
-    @NotNull(message = "İsim alanı gereklidir.")
-    @NotBlank(message = "İsim alanı gereklidir.")
+    @NotNull(message = "Cins isim alanı gereklidir.")
+    @NotBlank(message = "Cins isim alanı gereklidir.")
     private String typeName;
 
     @OneToMany(mappedBy = "type")
