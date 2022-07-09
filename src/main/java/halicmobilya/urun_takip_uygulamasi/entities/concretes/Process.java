@@ -25,12 +25,10 @@ public class Process {
 
     @ManyToOne()
     @JoinColumn(name = "user_id")
-    @Valid
     private User user;
 
     @ManyToOne()
     @JoinColumn(name = "material_id")
-    @Valid
     private Material material;
 
     @Column(name = "amount")
@@ -39,7 +37,6 @@ public class Process {
 
     @ManyToOne()
     @JoinColumn(name = "process_type_id")
-    @Valid
     private ProcessType processType;
 
     @Column(name = "created_at", nullable = false, updatable = false)
