@@ -34,7 +34,11 @@ public class UsersController {
 
     @PutMapping(value = "/v1/users/updateUser")
     public ResponseEntity<?> updateUser(@Valid @RequestBody User user){
-        return ResponseEntity.ok(this.userService.updateUser(user));
+        if(this.userService.getByEmail(user.getEmail()).getData() == null){
+            return ResponseEntity.ok(this.userService.updateUser(user));
+        } else {
+            return ResponseEntity.status(400).body(new ErrorResult("Email zaten kullanılmaktadır."));
+        }
     }
 
     @DeleteMapping(value = "/v1/users/deleteUser")
