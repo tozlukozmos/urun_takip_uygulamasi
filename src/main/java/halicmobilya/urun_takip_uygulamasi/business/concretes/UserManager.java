@@ -40,9 +40,6 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<User> updateUser(User user) {
-        if(this.userDao.findById(user.getId()).get().getPassword() != user.getPassword()) {
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        }
         return new SuccessDataResult<User>(this.userDao.save(user), "Kullanıcı başarıyla güncellendi.");
     }
 

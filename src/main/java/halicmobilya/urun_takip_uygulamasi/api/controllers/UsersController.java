@@ -32,9 +32,12 @@ public class UsersController {
         }
     }
 
-    @PutMapping(value = "/v1/users/updateUser")
-    public ResponseEntity<?> updateUser(@Valid @RequestBody User user){
-        if(this.userService.getByEmail(user.getEmail()).getData() == null){
+    @PatchMapping(value = "/v1/users/updateUser")
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        if(this.userService.getByEmail(user.getEmail()).getData() == null || this.userService.getByEmail(user.getEmail()).getData().getId() == user.getId()){
+            if(user.getPassword() != ""){
+                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            }
             return ResponseEntity.ok(this.userService.updateUser(user));
         } else {
             return ResponseEntity.status(400).body(new ErrorResult("Email zaten kullanılmaktadır."));
