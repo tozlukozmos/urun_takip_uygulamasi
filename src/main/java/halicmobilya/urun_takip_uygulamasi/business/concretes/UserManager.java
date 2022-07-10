@@ -3,11 +3,10 @@ package halicmobilya.urun_takip_uygulamasi.business.concretes;
 import halicmobilya.urun_takip_uygulamasi.business.abstracts.UserService;
 import halicmobilya.urun_takip_uygulamasi.core.dataAccess.abstracts.UserDao;
 import halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User;
-import halicmobilya.urun_takip_uygulamasi.core.utilities.results.DataResult;
-import halicmobilya.urun_takip_uygulamasi.core.utilities.results.Result;
-import halicmobilya.urun_takip_uygulamasi.core.utilities.results.SuccessDataResult;
-import halicmobilya.urun_takip_uygulamasi.core.utilities.results.SuccessResult;
+import halicmobilya.urun_takip_uygulamasi.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +40,9 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<User> updateUser(User user) {
+        if(this.userDao.findById(user.getId()).get().getPassword() != user.getPassword()) {
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        }
         return new SuccessDataResult<User>(this.userDao.save(user), "Kullanıcı başarıyla güncellendi.");
     }
 
