@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -35,12 +35,17 @@ public class Process {
     @NotNull(message = "Miktar alanı gereklidir.")
     private int amount;
 
-    @ManyToOne()
-    @JoinColumn(name = "process_type_id")
-    private ProcessType processType;
+    @Column(name = "process_type_name")
+    @NotNull(message = "İşlem türü isim alanı gereklidir.")
+    @NotBlank(message = "İşlem türü isim alanı gereklidir.")
+    private String processTypeName;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Date updatedAt;
 
 }

@@ -16,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -43,11 +42,11 @@ public class AuthController {
 
     @PostMapping(value = "/v1/auth/signUp")
     public ResponseEntity<?> signUp(@Valid @RequestBody User user){
-        if(this.userService.getByEmail(user.getEmail()).getData() == null){
+        if(this.userService.getByUsername(user.getUsername()).getData() == null){
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             return ResponseEntity.ok(this.userService.signUp(user));
         } else {
-            return ResponseEntity.status(400).body(new ErrorResult("Email zaten kullanılmaktadır."));
+            return ResponseEntity.status(400).body(new ErrorResult("Kullanıcı Adı zaten kullanılmaktadır."));
         }
     }
 
@@ -55,18 +54,18 @@ public class AuthController {
     public ResponseEntity<?> logIn(@RequestBody User user){
         Map<String, Object> responseMap = new HashMap<>();
         try {
-            if(this.userService.getByEmail(user.getEmail()).getData() != null){
-                Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+            if(this.userService.getByUsername(user.getUsername()).getData() != null){
+                Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                 if (auth.isAuthenticated()) {
                     logger.info("Logged In");
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
                     String token = jwtTokenUtil.generateToken(userDetails);
-                    return ResponseEntity.ok(this.userService.logIn(user.getEmail(), token));
+                    return ResponseEntity.ok(this.userService.logIn(user.getUsername(), token));
                 } else {
-                    return ResponseEntity.status(401).body(new ErrorResult("Şifre yanlış."));
+                    return ResponseEntity.status(401).body(new ErrorResult("Kullanıcı Adı veya Şifre yanlış."));
                 }
             } else {
-                return ResponseEntity.status(404).body(new ErrorResult("Kullanıcı bulunamadı."));
+                return ResponseEntity.status(404).body(new ErrorResult("Kullanıcı Adı veya Şifre yanlış."));
             }
         } catch (DisabledException e) {
             e.printStackTrace();
@@ -74,7 +73,7 @@ public class AuthController {
             responseMap.put("message", "User is disabled");
             return ResponseEntity.status(500).body(responseMap);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(401).body(new ErrorResult("Şifre yanlış."));
+            return ResponseEntity.status(401).body(new ErrorResult("Kullanıcı Adı veya Şifre yanlış."));
         } catch (Exception e) {
             e.printStackTrace();
             responseMap.put("error", true);

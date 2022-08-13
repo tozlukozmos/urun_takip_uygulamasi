@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -24,47 +24,36 @@ public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "material_id")
-    private int id;
+    private int materialId;
 
     @Column(name = "reference_number")
     private Long referenceNumber;
 
     @Column(name = "image_url")
-    private String image;
+    private String imageUrl;
 
     @Column(name = "material_name")
     @NotNull(message = "Materyal isim alanı gereklidir.")
     @NotBlank(message = "Materyal isim alanı gereklidir.")
-    private String name;
+    private String materialName;
 
-    @ManyToOne()
-    @JoinColumn(name = "type_id")
-    @Valid
-    private Type type;
-
-    @ManyToOne()
-    @JoinColumn(name = "unit_id")
-    @Valid
-    private Unit unit;
+    @Column(name = "type_name")
+    private String typeName;
 
     @Column(name = "amount")
     @NotNull(message = "Miktar alanı gereklidir.")
     private int amount;
 
-    @ManyToOne()
-    @JoinColumn(name = "model_id")
-    @Valid
-    private Model model;
+    @Column(name = "unit_name")
+    @NotNull(message = "Miktar birim alanı gereklidir.")
+    @NotBlank(message = "Miktar birim alanı gereklidir.")
+    private String unitName;
 
-    @ManyToOne()
-    @JoinColumn(name = "color_id")
-    @Valid
-    private Color color;
+    @Column(name = "color_name")
+    private String colorName;
 
-    @ManyToOne()
-    @JoinColumn(name = "size_id")
-    @Valid
-    private Size size;
+    @Column(name = "size_name")
+    private String sizeName;
 
     @Column(name = "description")
     private String description;
@@ -75,5 +64,9 @@ public class Material {
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Date updatedAt;
 
 }

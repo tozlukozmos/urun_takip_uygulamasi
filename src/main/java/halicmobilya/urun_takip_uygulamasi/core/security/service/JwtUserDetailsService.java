@@ -24,10 +24,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User user = userDao.getByEmail(username);
+        halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User user = userDao.getByUsername(username);
         List<GrantedAuthority> authorityList = new ArrayList<>();
         String role = user.isAdmin() ? "Admin" : "User";
         authorityList.add(new SimpleGrantedAuthority(role));
-        return new User(user.getEmail(), user.getPassword(), authorityList);
+        return new User(user.getUsername(), user.getPassword(), authorityList);
     }
 }

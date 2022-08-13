@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin
@@ -22,19 +20,9 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/v1/users/addUser")
-    public ResponseEntity<?> addUser(@Valid @RequestBody User user){
-        if(this.userService.getByEmail(user.getEmail()).getData() == null){
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            return ResponseEntity.ok(this.userService.addUser(user));
-        } else {
-            return ResponseEntity.status(400).body(new ErrorResult("Email zaten kullanılmaktadır."));
-        }
-    }
-
     @PatchMapping(value = "/v1/users/updateUser")
     public ResponseEntity<?> updateUser(@RequestBody User user){
-        if(this.userService.getByEmail(user.getEmail()).getData() == null || this.userService.getByEmail(user.getEmail()).getData().getId() == user.getId()){
+        if(this.userService.getByUsername(user.getUsername()).getData() == null || this.userService.getByUsername(user.getUsername()).getData().getUserId() == user.getUserId()){
             if(user.getPassword() != ""){
                 user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             }
@@ -54,5 +42,13 @@ public class UsersController {
         return ResponseEntity.ok(this.userService.getAllUser());
     }
 
+    @GetMapping(value = "/v1/users/getByUsername")
+    public ResponseEntity<?> getByUsername(@RequestParam String username){
+        return ResponseEntity.ok(this.userService.getByUsername(username));
+    }
 
+    @GetMapping(value = "/v1/users/getByEmail")
+    public ResponseEntity<?> getByEmail(@RequestParam String email){
+        return ResponseEntity.ok(this.userService.getByEmail(email));
+    }
 }

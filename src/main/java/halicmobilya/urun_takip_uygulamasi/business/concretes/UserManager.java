@@ -5,8 +5,6 @@ import halicmobilya.urun_takip_uygulamasi.core.dataAccess.abstracts.UserDao;
 import halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User;
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,14 +26,8 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public Result addUser(User user) {
-        this.userDao.save(user);
-        return new SuccessResult("Personel başarıyla eklendi.");
-    }
-
-    @Override
-    public DataResult<User> logIn(String email, String token) {
-        return new SuccessDataResult<User>(this.userDao.getByEmail(email), "Başarıyla giriş yapıldı.", token);
+    public DataResult<User> logIn(String username, String token) {
+        return new SuccessDataResult<User>(this.userDao.getByUsername(username), "Başarıyla giriş yapıldı.", token);
     }
 
     @Override
@@ -52,6 +44,11 @@ public class UserManager implements UserService {
     @Override
     public DataResult<List<User>> getAllUser() {
         return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Tüm kullanıcılar listelendi.");
+    }
+
+    @Override
+    public DataResult<User> getByUsername(String username) {
+        return new SuccessDataResult<User>(this.userDao.getByUsername(username), "Kullanıcı başarıyla bulundu.");
     }
 
     @Override
