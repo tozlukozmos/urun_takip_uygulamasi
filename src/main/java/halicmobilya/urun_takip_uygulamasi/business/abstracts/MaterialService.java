@@ -4,13 +4,14 @@ import halicmobilya.urun_takip_uygulamasi.core.utilities.results.DataResult;
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.Result;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface MaterialService {
     // DataResult<Material> addMaterial(Material material, Process process);
-    DataResult<Material> addMaterial(Material material);
+    DataResult<Material> addMaterial(Material material, MultipartFile file);
     DataResult<Material> updateMaterial(Material material);
     DataResult<List<Material>> getAllMaterial();
     DataResult<Optional<Material>> getById(int id);

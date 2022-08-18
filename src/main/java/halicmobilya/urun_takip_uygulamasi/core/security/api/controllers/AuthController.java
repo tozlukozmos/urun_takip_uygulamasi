@@ -1,13 +1,17 @@
 package halicmobilya.urun_takip_uygulamasi.core.security.api.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import halicmobilya.urun_takip_uygulamasi.business.abstracts.UserService;
 import halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User;
 import halicmobilya.urun_takip_uygulamasi.core.security.service.JwtUserDetailsService;
 import halicmobilya.urun_takip_uygulamasi.core.security.utilities.JwtTokenUtil;
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.ErrorResult;
+import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
+import lombok.SneakyThrows;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,9 +20,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 

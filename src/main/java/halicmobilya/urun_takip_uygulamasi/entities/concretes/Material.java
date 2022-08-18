@@ -69,4 +69,11 @@ public class Material {
     @UpdateTimestamp
     private Date updatedAt;
 
+    @Transient
+    public String getMaterialImageUrlPath() {
+        if(imageUrl == null) return null;
+
+        return "/images/materials/" + materialId + "/" + imageUrl;
+    }
+
 }

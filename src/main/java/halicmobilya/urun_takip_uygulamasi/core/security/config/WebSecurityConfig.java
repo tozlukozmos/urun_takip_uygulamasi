@@ -16,7 +16,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/v1/auth/*",
                 "/api/v1/departments/addDepartment",
                 "/v2/api-docs",
+                "/images/**",
                 "/swagger-resources",
                 "/swagger-resources/**",
                 "/configuration/ui",

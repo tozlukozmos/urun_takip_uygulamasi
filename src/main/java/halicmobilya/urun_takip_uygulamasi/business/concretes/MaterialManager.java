@@ -8,7 +8,15 @@ import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +39,30 @@ public class MaterialManager implements MaterialService {
     }*/
 
     @Override
-    public DataResult<Material> addMaterial(Material material) {
+    public DataResult<Material> addMaterial(Material material, MultipartFile file) {
+
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        material.setImageUrl(fileName);
+        Material savedMaterial = this.materialDao.save(material);
+
+        String uploadDir = "/images/materials/" + savedMaterial.getMaterialId();
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        System.out.println("HELLLO " + uploadPath);
+
+        if(!Files.exists(uploadPath)) {
+            try {
+                Files.createDirectories(uploadPath);
+                InputStream inputStream = file.getInputStream();
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+                // return new ErrorResult("Doğrulama işlemi başarısız oldu.");
+            }
+        }
+
         return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
     }
 

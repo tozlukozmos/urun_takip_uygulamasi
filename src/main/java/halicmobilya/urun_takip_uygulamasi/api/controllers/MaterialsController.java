@@ -1,12 +1,18 @@
 package halicmobilya.urun_takip_uygulamasi.api.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import halicmobilya.urun_takip_uygulamasi.business.abstracts.MaterialService;
+import halicmobilya.urun_takip_uygulamasi.core.entities.concretes.User;
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.ErrorResult;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,11 +38,27 @@ public class MaterialsController {
         }
     }*/
 
+    @Component
+    public static class StringToMaterialConverter implements Converter<String, Material> {
+
+        private final ObjectMapper objectMapper;
+
+        public StringToMaterialConverter(ObjectMapper objectMapper) {
+            this.objectMapper = objectMapper;
+        }
+
+        @Override
+        @SneakyThrows
+        public Material convert(String source) {
+            return objectMapper.readValue(source, Material.class);
+        }
+    }
+
     @PostMapping(value = "/v1/materials/addMaterial")
-    public ResponseEntity<?> addMaterial(@Valid @RequestBody Material material){
+    public ResponseEntity<?> addMaterial(@Valid @RequestParam("material") Material material, @RequestParam("file") MultipartFile file){
         if(this.materialService.getByReferenceNumber(material.getReferenceNumber()).getData() == null){
             if(this.materialService.getByMaterialNameAndTypeNameAndUnitNameAndSizeNameAndColorName(material.getMaterialName(), material.getTypeName(), material.getUnitName(), material.getSizeName(), material.getColorName()).getData() == null) {
-                return ResponseEntity.ok(this.materialService.addMaterial(material));
+                return ResponseEntity.ok(this.materialService.addMaterial(material, file));
             } else {
                 Material currentMaterial = this.materialService.getByMaterialNameAndTypeNameAndUnitNameAndSizeNameAndColorName(material.getMaterialName(), material.getTypeName(), material.getUnitName(), material.getSizeName(), material.getColorName()).getData();
                 currentMaterial.setAmount(currentMaterial.getAmount() + material.getAmount());
