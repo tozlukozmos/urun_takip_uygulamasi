@@ -3,9 +3,7 @@ package halicmobilya.urun_takip_uygulamasi.business.concretes;
 import halicmobilya.urun_takip_uygulamasi.business.abstracts.MaterialService;
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.*;
 import halicmobilya.urun_takip_uygulamasi.dataAccess.abstracts.MaterialDao;
-import halicmobilya.urun_takip_uygulamasi.dataAccess.abstracts.ProcessDao;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
-import halicmobilya.urun_takip_uygulamasi.entities.concretes.Process;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -23,20 +21,12 @@ import java.util.Optional;
 @Service
 public class MaterialManager implements MaterialService {
     private MaterialDao materialDao;
-    private ProcessDao processDao;
 
     @Autowired
-    public MaterialManager(MaterialDao materialDao, ProcessDao processDao) {
+    public MaterialManager(MaterialDao materialDao) {
         super();
         this.materialDao = materialDao;
-        this.processDao = processDao;
     }
-
-    /* @Override
-    public DataResult<Material> addMaterial(Material material, Process process) {
-        this.processDao.save(process);
-        return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
-    }*/
 
     @Override
     public DataResult<Material> addMaterial(Material material, MultipartFile file) {
@@ -44,12 +34,8 @@ public class MaterialManager implements MaterialService {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         material.setImageUrl(fileName);
         Material savedMaterial = this.materialDao.save(material);
-
         String uploadDir = "/images/materials/" + savedMaterial.getMaterialId();
-
         Path uploadPath = Paths.get(uploadDir);
-
-        System.out.println("HELLLO " + uploadPath);
 
         if(!Files.exists(uploadPath)) {
             try {
@@ -58,8 +44,7 @@ public class MaterialManager implements MaterialService {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                throw new RuntimeException(e);
-                // return new ErrorResult("Doğrulama işlemi başarısız oldu.");
+                throw new RuntimeException("Could not initialize folder for upload!");
             }
         }
 
