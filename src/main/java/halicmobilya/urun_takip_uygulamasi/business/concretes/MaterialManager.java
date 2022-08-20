@@ -34,7 +34,7 @@ public class MaterialManager implements MaterialService {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         material.setImageUrl(fileName);
         Material savedMaterial = this.materialDao.save(material);
-        String uploadDir = "/images/materials/" + savedMaterial.getMaterialId();
+        String uploadDir = "./images/materials/" + savedMaterial.getMaterialId();
         Path uploadPath = Paths.get(uploadDir);
 
         if(!Files.exists(uploadPath)) {
