@@ -35,7 +35,7 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public Result addEmployee(Employee employee, MultipartFile file) {
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 employee.setImageName(fileName);
@@ -47,7 +47,7 @@ public class EmployeeManager implements EmployeeService {
 
         } else {
             this.employeeDao.save(employee);
-        }
+        }*/
 
         /*if(file == null) {
             this.employeeDao.save(employee);
@@ -69,6 +69,7 @@ public class EmployeeManager implements EmployeeService {
                 }
             }
         }*/
+        this.employeeDao.save(employee);
         return new SuccessResult("Personel başarıyla eklendi.");
     }
 
@@ -80,7 +81,7 @@ public class EmployeeManager implements EmployeeService {
     @Override
     public DataResult<Employee> updateEmployee(Employee employee, MultipartFile file) {
 
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 employee.setImageName(fileName);
@@ -92,7 +93,7 @@ public class EmployeeManager implements EmployeeService {
 
         } else {
             return new SuccessDataResult<Employee>(this.employeeDao.save(employee), "Personel başarıyla güncellendi.");
-        }
+        }*/
 
         /*if(file != null) {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -116,6 +117,8 @@ public class EmployeeManager implements EmployeeService {
         } else {
             return new SuccessDataResult<Employee>(this.employeeDao.save(employee), "Personel başarıyla güncellendi.");
         }*/
+
+        return new SuccessDataResult<Employee>(this.employeeDao.save(employee), "Personel başarıyla güncellendi.");
     }
 
     @Override

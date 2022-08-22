@@ -58,7 +58,7 @@ public class UsersController {
         return ResponseEntity.ok(this.userService.getByEmail(email));
     }
 
-    @GetMapping(value = "/v1/images/users/{userId}")
+    /*@GetMapping(value = "/v1/images/users/{userId}")
     public ResponseEntity<?> getImageByUserId(@PathVariable int userId, HttpServletRequest request){
         User user = this.userService.getUserById(userId).getData();
 
@@ -67,5 +67,5 @@ public class UsersController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(mimeType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline;fileName=" + user.getImageName())
                 .body(user.getImageData());
-    }
+    }*/
 }

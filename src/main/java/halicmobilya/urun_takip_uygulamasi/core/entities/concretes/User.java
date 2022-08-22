@@ -67,14 +67,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Process> processes;
 
-    @Column(name = "image_name")
+    /*@Column(name = "image_name")
     private String imageName;
 
     @Column(name = "image_data")
-    private byte[] imageData;
+    private byte[] imageData;*/
 
-    /*@Column(name = "image_url")
-    private String imageUrl;*/
+    @Column(name = "image_url")
+    private String imageUrl;
 
     // @Lob
     // @Column(name = "image_data")

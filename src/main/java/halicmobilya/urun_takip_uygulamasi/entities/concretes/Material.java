@@ -32,8 +32,8 @@ public class Material {
     @Column(name = "reference_number")
     private Long referenceNumber;
 
-    /*@Column(name = "image_url")
-    private String imageUrl;*/
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "material_name")
     @NotNull(message = "Materyal isim alanı gereklidir.")
@@ -64,8 +64,8 @@ public class Material {
     @Column(name = "image_name")
     private String imageName;
 
-    @Column(name = "image_data")
-    private byte[] imageData;
+    /*@Column(name = "image_data")
+    private byte[] imageData;*/
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<Process> processes;

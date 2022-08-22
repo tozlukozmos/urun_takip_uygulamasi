@@ -47,14 +47,14 @@ public class Employee {
     @NotBlank(message = "Çalışma birimi isim alanı gereklidir.")
     private String departmentName;
 
-    @Column(name = "image_name")
+    /*@Column(name = "image_name")
     private String imageName;
 
     @Column(name = "image_data")
-    private byte[] imageData;
+    private byte[] imageData;*/
 
-    /*@Column(name = "image_url")
-    private String imageUrl;*/
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp

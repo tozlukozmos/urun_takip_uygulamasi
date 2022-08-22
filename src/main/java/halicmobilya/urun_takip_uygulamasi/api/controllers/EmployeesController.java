@@ -96,7 +96,7 @@ public class EmployeesController {
         return ResponseEntity.ok(this.employeeService.getByEmail(email));
     }
 
-    @GetMapping(value = "/v1/images/employees/{employeeId}")
+    /*@GetMapping(value = "/v1/images/employees/{employeeId}")
     public ResponseEntity<?> getImageByEmployeeId(@PathVariable int employeeId, HttpServletRequest request){
         Employee employee = this.employeeService.findById(employeeId).getData();
 
@@ -105,5 +105,5 @@ public class EmployeesController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(mimeType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline;fileName=" + employee.getImageName())
                 .body(employee.getImageData());
-    }
+    }*/
 }

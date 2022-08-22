@@ -25,7 +25,7 @@ public class UserManager implements UserService {
 
     @Override
     public Result signUp(User user, MultipartFile file) {
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 user.setImageName(fileName);
@@ -37,7 +37,7 @@ public class UserManager implements UserService {
 
         } else {
             this.userDao.save(user);
-        }
+        }*/
         /*if(file == null) {
             this.userDao.save(user);
         } else {
@@ -58,6 +58,7 @@ public class UserManager implements UserService {
                 }
             }
         }*/
+        this.userDao.save(user);
         return new SuccessResult("Kullanıcı başarıyla eklendi.");
     }
 
@@ -73,7 +74,7 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<User> updateUser(User user, MultipartFile file) {
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 user.setImageName(fileName);
@@ -85,7 +86,7 @@ public class UserManager implements UserService {
 
         } else {
             return new SuccessDataResult<User>(this.userDao.save(user), "Kullanıcı başarıyla güncellendi.");
-        }
+        }*/
 
         /*if(file != null) {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -109,6 +110,7 @@ public class UserManager implements UserService {
         } else {
             return new SuccessDataResult<User>(this.userDao.save(user), "Kullanıcı başarıyla güncellendi.");
         }*/
+        return new SuccessDataResult<User>(this.userDao.save(user), "Kullanıcı başarıyla güncellendi.");
     }
 
     @Override

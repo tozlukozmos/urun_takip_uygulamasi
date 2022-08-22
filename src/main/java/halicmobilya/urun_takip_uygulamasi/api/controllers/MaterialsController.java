@@ -83,7 +83,7 @@ public class MaterialsController {
         return ResponseEntity.ok(this.materialService.getByReferenceNumber(referenceNumber));
     }
 
-    @GetMapping(value = "/v1/images/materials/{materialId}")
+    /*@GetMapping(value = "/v1/images/materials/{materialId}")
     public ResponseEntity<?> getImageByMaterialId(@PathVariable int materialId, HttpServletRequest request){
         Material material = this.materialService.getById(materialId).getData().get();
 
@@ -92,6 +92,6 @@ public class MaterialsController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(mimeType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline;fileName=" + material.getImageName())
                 .body(material.getImageData());
-    }
+    }*/
 
 }

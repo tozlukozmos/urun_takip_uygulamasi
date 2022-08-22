@@ -1,0 +1,31 @@
+2022-08-22 18:45:15,371 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting UrunTakipUygulamasiApplication using Java 17.0.1 on LAPTOP-GA50GKEC with PID 14040 (C:\Users\aeyig\IdeaProjects\urun_takip_uygulamasi\target\classes started by abdulkadir in C:\Users\aeyig\IdeaProjects\urun_takip_uygulamasi)
+2022-08-22 18:45:15,373 INFO org.springframework.boot.SpringApplication [restartedMain] The following 1 profile is active: "dev"
+2022-08-22 18:45:15,452 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-22 18:45:15,453 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-22 18:45:16,385 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-22 18:45:16,464 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2022-08-22 18:45:17,185 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2022-08-22 18:45:17,194 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-22 18:45:17,195 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-08-22 18:45:17,290 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-22 18:45:17,291 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1837 ms
+2022-08-22 18:45:17,477 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-22 18:45:17,530 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-08-22 18:45:17,670 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-22 18:45:17,771 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-22 18:45:19,202 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-22 18:45:19,214 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-08-22 18:45:21,406 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-22 18:45:21,412 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-22 18:45:22,150 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-22 18:45:22,340 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3241ec0d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77a9cc76, org.springframework.security.web.context.SecurityContextPersistenceFilter@3d5d924f, org.springframework.security.web.header.HeaderWriterFilter@365475f6, org.springframework.security.web.authentication.logout.LogoutFilter@51575088, halicmobilya.urun_takip_uygulamasi.core.security.utilities.JwtRequestFilter@6c6d8481, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a819e1b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1bad1c2d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2b0249f0, org.springframework.security.web.session.SessionManagementFilter@50815116, org.springframework.security.web.access.ExceptionTranslationFilter@1d6d5646, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@766abf09]
+2022-08-22 18:45:23,335 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-22 18:45:23,379 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-22 18:45:23,395 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started UrunTakipUygulamasiApplication in 8.631 seconds (JVM running for 9.663)
+2022-08-22 18:45:23,486 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-22 18:45:23,486 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-22 18:45:23,487 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-08-22 18:45:23,500 WARN halicmobilya.urun_takip_uygulamasi.core.security.utilities.JwtRequestFilter [http-nio-8080-exec-1] JWT Token does not begin with Bearer String
+2022-08-22 18:45:26,080 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-22 18:45:26,083 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-22 18:45:26,937 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

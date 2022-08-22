@@ -32,7 +32,7 @@ public class MaterialManager implements MaterialService {
     @Override
     public DataResult<Material> addMaterial(Material material, MultipartFile file) {
 
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 material.setImageName(fileName);
@@ -44,7 +44,7 @@ public class MaterialManager implements MaterialService {
 
         } else {
             return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
-        }
+        }*/
 
         /*if(file != null) {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -67,12 +67,13 @@ public class MaterialManager implements MaterialService {
         } else {
             return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
         }*/
+        return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla eklendi.");
     }
 
     @Override
     public DataResult<Material> updateMaterial(Material material, MultipartFile file) {
 
-        if(file != null) {
+        /*if(file != null) {
             try {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 material.setImageName(fileName);
@@ -84,7 +85,7 @@ public class MaterialManager implements MaterialService {
 
         } else {
             return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla güncellendi.");
-        }
+        }*/
 
         /*if(file != null) {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -108,6 +109,7 @@ public class MaterialManager implements MaterialService {
         } else {
             return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla güncellendi.");
         }*/
+        return new SuccessDataResult<Material>(this.materialDao.save(material), "Materyal başarıyla güncellendi.");
     }
 
     @Override
