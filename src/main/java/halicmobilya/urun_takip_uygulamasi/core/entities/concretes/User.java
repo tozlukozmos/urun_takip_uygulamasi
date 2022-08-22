@@ -67,8 +67,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Process> processes;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "image_name")
+    private String imageName;
+
+    @Column(name = "image_data")
+    private byte[] imageData;
+
+    /*@Column(name = "image_url")
+    private String imageUrl;*/
+
+    // @Lob
+    // @Column(name = "image_data")
+    // private byte[] imageData;
 
     @Column(name = "is_admin")
     @NotNull(message = "Admin yetki bilgisi alanı gereklidir.")
@@ -81,4 +91,11 @@ public class User {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Date updatedAt;
+
+    /*@Transient
+    public String getUserImageUrlPath() {
+        if(imageUrl == null) return null;
+
+        return "/images/users/" + userId + "/" + imageUrl;
+    }*/
 }

@@ -47,8 +47,14 @@ public class Employee {
     @NotBlank(message = "Çalışma birimi isim alanı gereklidir.")
     private String departmentName;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "image_name")
+    private String imageName;
+
+    @Column(name = "image_data")
+    private byte[] imageData;
+
+    /*@Column(name = "image_url")
+    private String imageUrl;*/
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
@@ -57,4 +63,11 @@ public class Employee {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Date updatedAt;
+
+    /*@Transient
+    public String getEmployeeImageUrlPath() {
+        if(imageUrl == null) return null;
+
+        return "/images/employees/" + employeeId + "/" + imageUrl;
+    }*/
 }

@@ -1,6 +1,7 @@
 package halicmobilya.urun_takip_uygulamasi.business.abstracts;
 
 import halicmobilya.urun_takip_uygulamasi.core.utilities.results.DataResult;
+import halicmobilya.urun_takip_uygulamasi.core.utilities.results.Result;
 import halicmobilya.urun_takip_uygulamasi.entities.concretes.Material;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +10,8 @@ import java.util.Optional;
 
 public interface MaterialService {
     DataResult<Material> addMaterial(Material material, MultipartFile file);
-    DataResult<Material> updateMaterial(Material material);
+    DataResult<Material> updateMaterial(Material material, MultipartFile file);
+    Result deleteMaterial(int id);
     DataResult<List<Material>> getAllMaterial();
     DataResult<Optional<Material>> getById(int id);
     DataResult<Material> getByReferenceNumber(Long referenceNumber);
